@@ -5,7 +5,7 @@ import React from 'react';
              <div className="nav">
                  <div className="search-container">
                     <input/>
-                    <button id="search-btn"></button>
+                    <button id="search-btn">Search</button>
                  </div>
 
              </div>
