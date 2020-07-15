@@ -1,0 +1,10 @@
+{
+    type:'ADD_MOVIES',
+    movies=[]
+}
+{
+    type:'INCREASE_COUNT'
+}
+ {
+    type:'DECREASE_COUNT'
+}
