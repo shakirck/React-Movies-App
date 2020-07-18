@@ -1,12 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore ,applyMiddleware } from 'redux';
 
 import './index.css';
 import App from './components/App';
 import movies from './reducers';
+import rootReducer from './reducers'
 
-const store = createStore(movies);
+
+// const logger = function({dispatch , action}){
+//   return function(next){
+//     return function(action){
+//       console .log('Action Type === ',action.type);
+//       next(action);
+//     }
+//   }
+// }
+const logger = ({dispatch , action }) => (next) => (action)=>{
+  console .log('Action Type === ',action.type);
+  next(action);
+}
+const store = createStore(rootReducer,applyMiddleware(logger));
 // console.log(store);
 // console.log(store.getState());
 

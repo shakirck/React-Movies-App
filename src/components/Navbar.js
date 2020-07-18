@@ -1,11 +1,45 @@
 import React from 'react';
+import{addMovieToList} from '../actions';
+import { data } from '../data';
+
  class Navbar extends React.Component {
+
+    constructor(props) {
+       super(props);
+        this.state={
+          showSearchResults:true
+       }
+    }
+    handleAddToMovies=(movie)=>{
+       this.props.dispatch(addMovieToList(movie));
+       this.setState({
+          showSearchResults:false
+       });
+    }
      render(){
-        return (
+ 
+        const {showSearchResults}= this.state;
+         return (
              <div className="nav">
                  <div className="search-container">
                     <input/>
                     <button id="search-btn">Search</button>
+
+                    {showSearchResults &&
+                    
+                     <div className="search-results">
+                        <div className = "search-result">
+                           <img src = {data[0].Poster} alt ="search movie" />
+                           <div className="movie-info"> 
+                              <span> {data[0].Title} </span>
+                              <button onClick={()=>this.handleAddToMovies(data[0])}>Add</button>
+
+                           </div>
+                        </div> 
+
+                     </div>
+
+                    }
                  </div>
 
              </div>
