@@ -6,7 +6,7 @@ import './index.css';
 import App from './components/App';
 import movies from './reducers';
 import rootReducer from './reducers'
-
+import thunk from 'redux-thunk';
 
 // const logger = function({dispatch , action}){
 //   return function(next){
@@ -16,11 +16,25 @@ import rootReducer from './reducers'
 //     }
 //   }
 // }
-const logger = ({dispatch , action }) => (next) => (action)=>{
-  console .log('Action Type === ',action.type);
+const logger = ({dispatch , getState }) => (next) => (action)=>{
+  if(typeof action !=='function'){
+    console .log('Action Type === ',action.type);
+
+  }
   next(action);
 }
-const store = createStore(rootReducer,applyMiddleware(logger));
+
+// const thunk = ({dispatch , getState })=>(next) =>(action) =>{
+
+//   if(typeof action == 'function'){
+//     console.log('thunk')
+//     action(dispatch);
+//     return;
+//   }
+
+//   next (action)
+// }
+const store = createStore(rootReducer,applyMiddleware(logger,thunk));
 // console.log(store);
 // console.log(store.getState());
 
